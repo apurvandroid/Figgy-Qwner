@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
+
 import '../models/category.dart';
 import '../models/market.dart';
 import '../models/media.dart';
@@ -16,6 +20,7 @@ class Product {
   String capacity;
   String unit;
   String packageItemsCount;
+  bool  status;
   bool featured;
   bool deliverable;
   Market market;
@@ -27,7 +32,20 @@ class Product {
   Product();
 
   Product.fromJSON(Map<String, dynamic> jsonMap) {
+
+    debugPrint("jsondata "+jsonMap.toString());
+
+
     try {
+      var value=jsonMap["status"].toString();
+      if(value == "1"){
+        status=true;
+      }else{
+        status=false;
+      }
+
+      debugPrint("value"+value);
+
       id = jsonMap['id'].toString();
       name = jsonMap['name'];
       price = jsonMap['price'] != null ? jsonMap['price'].toDouble() : 0.0;

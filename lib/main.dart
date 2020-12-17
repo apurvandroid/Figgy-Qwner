@@ -29,9 +29,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
-//  /// Supply 'the Controller' for this application.
-//  MyApp({Key key}) : super(con: Controller(), key: key);
 
   @override
   _MyAppState createState() => _MyAppState();

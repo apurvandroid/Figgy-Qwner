@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:markets_owner/src/models/user.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../../generated/l10n.dart';
@@ -9,6 +10,7 @@ import '../models/review.dart';
 import '../repository/gallery_repository.dart';
 import '../repository/market_repository.dart';
 import '../repository/product_repository.dart';
+import '../repository/user_repository.dart' as userRepo;
 
 class MarketController extends ControllerMVC {
   Market market;
@@ -27,7 +29,12 @@ class MarketController extends ControllerMVC {
   void listenForMarkets({String message}) async {
     final Stream<Market> stream = await getMarkets();
     stream.listen((Market _market) {
+      User _user = userRepo.currentUser.value;
+      if(_market.id == _user.id){
+
+      }
       setState(() => markets.add(_market));
+
     }, onError: (a) {
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
         content: Text(S.of(context).verify_your_internet_connection),
@@ -117,3 +124,4 @@ class MarketController extends ControllerMVC {
     listenForMarkets(message: S.of(context).market_refreshed_successfuly);
   }
 }
+/**/

@@ -249,7 +249,7 @@ class _SettingsWidgetState extends StateMVC<SettingsWidget> {
                                   color: Theme.of(context).focusColor),
                             ),
                           ),
-                          ListTile(
+                       /*   ListTile(
                             onTap: () {
                               Navigator.of(context).pushNamed('/Store Off');
                             },
@@ -274,10 +274,10 @@ class _SettingsWidgetState extends StateMVC<SettingsWidget> {
                                 setState(() {
                                   isSwitched = value;
                                   if (isSwitched) {
-                                    updateStatus("1",currentUser.value.id);
+                                    updateStatus("0",currentUser.value.id);
                                     debugPrint("done " + currentUser.value.id);
                                   } else {
-                                    updateStatus("0",currentUser.value.id);
+                                    updateStatus("1",currentUser.value.id);
                                     debugPrint("done " + "2");
                                   }
                                 });
@@ -285,7 +285,7 @@ class _SettingsWidgetState extends StateMVC<SettingsWidget> {
                               activeTrackColor: Colors.lightGreenAccent,
                               activeColor: Colors.green,
                             ),
-                          ),
+                          ),*/
                           ListTile(
                             onTap: () {
                               Navigator.of(context).pushNamed('/Help');
@@ -317,16 +317,16 @@ class _SettingsWidgetState extends StateMVC<SettingsWidget> {
 
   Future<String> getStoreStatus() async {
     var response = await http.get(
-        Uri.encodeFull("https://admin.homegrocy.com/public/market/" + "13"),
+        Uri.encodeFull("http://65.0.152.250/public/market/" + currentUser.value.id),
         headers: {"Accept": "application/json"});
 
     var parsedJson = json.decode(response.body);
     var rest = parsedJson["data"] as List;
 
     if (rest[0]["closed"] == 0) {
-      isSwitched = false;
-    } else {
       isSwitched = true;
+    } else {
+      isSwitched = false;
     }
     if(stateStatus == "1"){
       setState(() {});
@@ -341,7 +341,7 @@ class _SettingsWidgetState extends StateMVC<SettingsWidget> {
 
   Future<String> updateStatus(String value,String id) async {
     var response = await http.get(
-        Uri.encodeFull("https://admin.homegrocy.com/public/update_status/$id/$value"),
+        Uri.encodeFull("http://65.0.152.250/public/update_status/$id/$value"),
         headers: {"Accept": "application/json"});
 
    /* var parsedJson = json.decode(response.body);*/

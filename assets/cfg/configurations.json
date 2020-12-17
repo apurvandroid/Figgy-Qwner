@@ -1,4 +1,4 @@
 {
-  "base_url": "https://admin.homegrocy.com/public/",
-  "api_base_url": "https://admin.homegrocy.com/public/api/"
+  "base_url": "http://65.0.152.250/public/",
+  "api_base_url": "http://65.0.152.250/public/api/"
 }

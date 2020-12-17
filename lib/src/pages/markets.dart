@@ -60,14 +60,16 @@ class _MarketsWidgetState extends StateMVC<MarketsWidget> {
                 primary: true,
                 itemCount: _con.markets.length,
                 itemBuilder: (context, index) {
+
                   return GestureDetector(
-                    onTap: () {
+                /*   onTap: () {
                       Navigator.of(context).pushNamed('/Details',
                           arguments: RouteArgument(
                             id: _con.markets.elementAt(index).id,
                             heroTag: 'my_markets',
                           ));
-                    },
+                    },*/
+
                     child: CardWidget(market: _con.markets.elementAt(index), heroTag: 'my_markets'),
                   );
                 },
